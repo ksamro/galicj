@@ -1,3 +1,26 @@
+
+// Language switcher (PL/EN placeholder)
+const langButtons = document.querySelectorAll('.lang-btn');
+const savedLang = localStorage.getItem('preferredLang') || 'pl';
+
+langButtons.forEach((btn) => {
+  const isActive = btn.dataset.lang === savedLang;
+  btn.setAttribute('aria-pressed', String(isActive));
+
+  btn.addEventListener('click', () => {
+    const nextLang = btn.dataset.lang || 'pl';
+    localStorage.setItem('preferredLang', nextLang);
+
+    langButtons.forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.lang === nextLang));
+    });
+
+    if (nextLang === 'en') {
+      alert('English version is coming soon. / Wersja angielska jest w przygotowaniu.');
+    }
+  });
+});
+
 // Mobile menu toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');
